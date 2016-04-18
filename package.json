@@ -1,0 +1,13 @@
+{
+  "name": "immutable-todo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify src/app.js -o build/bundle.js -t [ babelify --presets [ es2015 react ] ]"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
