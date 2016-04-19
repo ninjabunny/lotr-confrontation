@@ -1,16 +1,19 @@
-import { OrderedMap } from 'immutable';
+import { List } from 'immutable';
 
-const init = OrderedMap();
+const init = List([]);
 
 export default function reducer(todos=init, action) {
   switch(action.type) {
     case 'ADD_TODO':
-      return todos.set(action.payload.id, action.payload);
+      return todos.push(action.payload);
     case 'TOGGLE_TODO':
-      return todos.updateIn(
-        [action.payload, 'isDone'],
-        isDone => !isDone
-      );
+      return todos.map(t => {
+        if(t.get('id') === action.payload) {
+          return t.update('isDone', isDone => !isDone);
+        } else {
+          return t;
+        }
+      });
     default:
       return todos;
   }
