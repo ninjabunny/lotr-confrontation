@@ -8,7 +8,7 @@ http://www.sitepoint.com/how-to-build-a-todo-app-using-react-redux-and-immutable
 
 * [Node.js](http://nodejs.org/)
 
-## Installation Steps (if applicable)
+## Installation Steps
 
 1. Clone repo
 2. Run `npm install`
