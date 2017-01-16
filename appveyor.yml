@@ -30,7 +30,7 @@ install:
   - npm install
 
 # Disable automatic builds
-build: off
+build: on
 
 # Post-install test scripts
 test_script:
