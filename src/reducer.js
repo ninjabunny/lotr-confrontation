@@ -4,11 +4,11 @@ const init = {
   locations: {
     dogtown: {
       name: 'dogtown',
-      members: []
+      members: ['billy', 'sue']
     },
     ludeville: {
       name: 'ludeville',
-      members: []
+      members: ['bob']
     }
   }
 };

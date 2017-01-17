@@ -1,6 +1,7 @@
 html, body, input, button {
   font-family: Sawasdee;
   font-size: 20px;
+  color: white;
 }
 
 #dogtown {
@@ -9,4 +10,8 @@ html, body, input, button {
 
 #ludeville {
  background: blue; 
+
+
+.location {
+
 }
