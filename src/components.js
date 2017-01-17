@@ -1,47 +1,18 @@
 import React from 'react';
 
-export function Todo(props) {
-  const { todo } = props;
-
-  if(todo.isDone) {
-    return <strike>{todo.text}</strike>;
-  } else {
-    return <span>{todo.text}</span>;
-  }
+export function location(props) {
+  console.log('location prop', props)
+  const { location } = props;
+  return <div id={props.name}>{props.name}</div>;
 }
 
-export function TodoList(props) {
-  const { todos, toggleTodo, addTodo } = props;
-
-  const onSubmit = (event) => {
-    const input = event.target;
-    const text = input.value;
-    const isEnterKey = (event.which == 13);
-    const isLongEnough = text.length > 0;
-
-    if(isEnterKey && isLongEnough) {
-      input.value = '';
-      addTodo(text);
-    }
-  };
-
-  const toggleClick = id => event => toggleTodo(id);
-
+export function Box(props) {
+  const { box, toggleTodo, addTodo } = props;
+  console.log('box props', props)
   return (
     <div className='todo'>
-      <input type='text'
-             className='todo__entry'
-             placeholder='Add todo'
-             onKeyDown={onSubmit} />
-      <ul className='todo__list'>
-        {todos.map(t => (
-          <li key={t.get('id')}
-              className='todo__item'
-              onClick={toggleClick(t.get('id'))}>
-            <Todo todo={t.toJS()} />
-          </li>
-        ))}
-      </ul>
+      {location(box.locations.dogtown)}
+      {location(box.locations.ludeville)}
     </div>
   );
 }
