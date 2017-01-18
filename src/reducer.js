@@ -3,35 +3,28 @@ import { List, Map } from 'immutable';
 const init = {
   locations: [
     {
-      name: 'dogtown'
+      name: 'dogtown',
+      members: ['jill', 'bob']
     },
     {
-      name: 'ludeville'
+      name: 'ludeville',
+      members: ['chicken']
     }
   ],
   selected: {location: '', member: ''},
-  members: [
-    {name: 'jill', location: 'dogtown'},
-    {name: 'bob', location: 'ludeville'},
-    {name: 'george', location: 'ludeville'}
-  ]
 };
 
-export default function reducer(todos=init, action) {
+export default function reducer(state=init, action) {
   console.log('Dispatched Action: ', action);
   switch(action.type) {
-    case 'ADD_TODO':
-      return todos.push(Map(action.payload));
-    case 'TOGGLE_TODO':
-      return todos.map(t => {
-        if(t.get('id') === action.payload) {
-          return t.update('isDone', isDone => !isDone);
-        } else {
-          return t;
-        }
-      });
+    case 'SELECT_LOCATION':
+      console.log('Reducer: Location Selected: ',  action.location)
+      return state;
+    case 'SELECT_GAME_PIECE':
+      console.log('Reducer: Game Piece Selected: ',  action.gamepiece)
+      return state;
     default:
-      return todos;
+      return state;
   }
 }
 

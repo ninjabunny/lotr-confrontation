@@ -1,40 +1,39 @@
-import React from 'react';
+// import React from 'react';
+import React, { Component, PropTypes } from 'react'
 
-export function gamePiece(props) {
-  console.log('member', props)
-  // const { member } = props;
+export function gamePiece(member, dispatch) {
   function handleClick(e) {
-    e.preventDefault();
-    console.log('The link was clicked.', e.target);
+    e.stopPropagation();
+    dispatch(member);
   }
-  return <div onClick={handleClick} >asdasd{props}</div>;
+  return <div className='game-piece' id={member} key={member} onClickCapture={handleClick} >{member}</div>;
 }
 
-export function locationArea(props, members) {
-  console.log('location prop:', props + 'asdasd', members)
-  // var namesList = props.members.map(function(name){
-  //   return gamePiece(name);
-  //   })
-  // return (<div className='location' id={props.name}>
-  //     {props.name}
-  //   </div>
-  // );
-  return (<div key={props.name} id={props.name}>{props.name}</div>);
+export function locationAreas(location, dispatches) {
+  console.log('location', location)
+  let members = location.members.map(member => {
+    return gamePiece(member, dispatches.selectGamePiece);
+  });
+
+  function handleClick(e) {
+    e.stopPropagation();
+    dispatches.selectedLocation(location.name);
+  }
+  return (<div id={location.name} key={location.name} onClick={handleClick}>
+    {location.name}
+    {members}
+  </div>);
 }
 
 export function Box(props) {
-  console.log('box props', props)
-  const { box, toggleTodo, addTodo } = props;
-  let local = box.locations.map(location => {
-      return locationArea(location, box.members.filter(member => {
-        return member.location === location;
-      }));
-  })
-
+  const { locations } = props.box;
+  const { dispatches } = props;
+  let local = locations.map(location => {
+    return locationAreas(location, dispatches);
+  });
   return (
     <div className='todo'>
       {local}
     </div>
   );
 }
-

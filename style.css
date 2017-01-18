@@ -8,4 +8,11 @@ html, body, input, button {
 }
 
 #ludeville {
- background: blue; 
+ background: green; 
+}
+
+.game-piece {
+ width: 100px;
+ height: 100px;
+ background: white;
+}
