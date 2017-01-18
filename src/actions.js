@@ -18,3 +18,9 @@ export function toggleTodo(id) {
   };
 }
 
+export function selectGamePiece(gamepiece) {
+  return {
+    type: 'SELECT_GAME_PIECE',
+    payload: gamepiece
+  };
+}

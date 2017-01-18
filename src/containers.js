@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import * as components from './components';
-import { addTodo, toggleTodo } from './actions';
+import { addTodo, toggleTodo, selectGamePiece} from './actions';
 
 export const Box = connect(
   function mapStateToProps(state) {
@@ -13,7 +13,8 @@ export const Box = connect(
   	console.log('dispatch', dispatch)
     return {
       addTodo: text => dispatch(addTodo(text)),
-      toggleTodo: id => dispatch(toggleTodo(id))
+      toggleTodo: id => dispatch(toggleTodo(id)),
+      selectGamePiece: gamepiece => dispatch(selectGamePiece(gamepiece))
     };
   }
 )(components.Box);

@@ -1,16 +1,16 @@
 import { List, Map } from 'immutable';
 
 const init = {
-  locations: {
-    dogtown: {
+  locations: [
+    {
       name: 'dogtown',
       members: ['billy', 'sue']
     },
-    ludeville: {
+    {
       name: 'ludeville',
       members: ['bob']
     }
-  }
+  ]
 };
 
 export default function reducer(todos=init, action) {
