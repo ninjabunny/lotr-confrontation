@@ -1,5 +1,3 @@
-import { List, Map } from 'immutable';
-
 const init = {
   locations: [
     {
@@ -18,11 +16,25 @@ export default function reducer(state=init, action) {
   console.log('Dispatched Action: ', action);
   switch(action.type) {
     case 'SELECT_LOCATION':
-      console.log('Reducer: Location Selected: ',  action.location)
-      return state;
+      if ( state.selected.member !== '') {
+        //remove the previous member
+        state.locations.map(location => {
+          let index = location.members.indexOf(state.selected.member);
+          if (index !== -1) {
+            location.members.splice(index, 1);  
+          }
+        });
+
+        //add member
+        state.locations.filter(location => {
+          return location.name === action.location;
+        })[0].members.push(state.selected.member);
+        state.selected.member = '';
+      }
+      return Object.assign({}, state)
     case 'SELECT_GAME_PIECE':
-      console.log('Reducer: Game Piece Selected: ',  action.gamepiece)
-      return state;
+      state.selected.member = action.gamepiece;
+      return Object.assign({}, state)
     default:
       return state;
   }

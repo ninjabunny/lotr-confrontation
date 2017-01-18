@@ -31,3 +31,19 @@ export function selectedLocation(location) {
     location: location
   };
 }
+
+export function removeMemberFromLocation(member, location) {
+  return {
+    type: 'REMOVE_MEMBER_FROM_LOCATION',
+    member: member,
+    location: location
+  };
+}
+
+export function addMemeberToLocation(member, location) {
+  return {
+    type: 'ADD_MEMBER_TO_LOCATION',
+    member: member,
+    location: location
+  };
+}
