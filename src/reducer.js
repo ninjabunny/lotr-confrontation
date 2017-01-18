@@ -3,13 +3,17 @@ import { List, Map } from 'immutable';
 const init = {
   locations: [
     {
-      name: 'dogtown',
-      members: ['billy', 'sue']
+      name: 'dogtown'
     },
     {
-      name: 'ludeville',
-      members: ['bob']
+      name: 'ludeville'
     }
+  ],
+  selected: {location: '', member: ''},
+  members: [
+    {name: 'jill', location: 'dogtown'},
+    {name: 'bob', location: 'ludeville'},
+    {name: 'george', location: 'ludeville'}
   ]
 };
 

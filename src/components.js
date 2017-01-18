@@ -10,8 +10,8 @@ export function gamePiece(props) {
   return <div onClick={handleClick} >asdasd{props}</div>;
 }
 
-export function locationArea(props) {
-  console.log('location prop:', props)
+export function locationArea(props, members) {
+  console.log('location prop:', props + 'asdasd', members)
   // var namesList = props.members.map(function(name){
   //   return gamePiece(name);
   //   })
@@ -19,19 +19,21 @@ export function locationArea(props) {
   //     {props.name}
   //   </div>
   // );
-  return (<div>hi</div>);
+  return (<div key={props.name} id={props.name}>{props.name}</div>);
 }
 
 export function Box(props) {
   console.log('box props', props)
   const { box, toggleTodo, addTodo } = props;
+  let local = box.locations.map(location => {
+      return locationArea(location, box.members.filter(member => {
+        return member.location === location;
+      }));
+  })
 
   return (
     <div className='todo'>
-      {box.locations.map(location => {
-        console.log('loc', locationArea(location))
-        locationArea()
-      })}
+      {local}
     </div>
   );
 }
