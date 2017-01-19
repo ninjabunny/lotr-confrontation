@@ -10,9 +10,13 @@ export function gamePiece(member, dispatch) {
 }
 
 export function locationAreas(location, dispatches) {
-  let members = location.members.map(member => {
-    return gamePiece(member, dispatches.selectGamePiece);
-  });
+  let members;
+  if(location.members) {
+   members = location.members.map(member => {
+      return gamePiece(member, dispatches.selectGamePiece);
+    });  
+  }
+  
 
   function handleClick(e) {
     e.stopPropagation();
