@@ -13,3 +13,10 @@ export function selectedLocation(location) {
     location: location
   };
 }
+
+export function firebaseSync(payload) {
+  return {
+    type: 'FIREBASE_SYNC',
+    payload: payload
+  }
+}
