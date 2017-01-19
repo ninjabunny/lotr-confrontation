@@ -10,7 +10,6 @@ export function gamePiece(member, dispatch) {
 }
 
 export function locationAreas(location, dispatches) {
-  console.log('location', location)
   let members = location.members.map(member => {
     return gamePiece(member, dispatches.selectGamePiece);
   });
