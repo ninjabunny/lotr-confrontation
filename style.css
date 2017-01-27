@@ -12,8 +12,8 @@ html, body, input, button {
 }
 
 .game-piece {
- width: 100px;
- height: 100px;
+	width: 320px;
+	height: 80px;
  background: white;
  border: 1px black solid;
 }

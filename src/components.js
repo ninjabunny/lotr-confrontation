@@ -6,7 +6,8 @@ export function gamePiece(member, dispatch) {
     e.stopPropagation();
     dispatch(member);
   }
-  return <div className='game-piece' id={member} key={member} onClickCapture={handleClick} >{member}</div>;
+  let divStyle = {backgroundImage: 'url(assets/' + member + '.png)'};
+  return <div className='game-piece' id={member} key={member} onClickCapture={handleClick} style={divStyle}></div>;
 }
 
 export function locationAreas(location, dispatches) {
