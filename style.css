@@ -31,6 +31,8 @@ html, body, input, button {
 
 #Mordor {
 	width: 100%;
+	background: #473F4E;
+	color: white;
 }
 #Mordor > .members-container{
 	flex-direction: row;
@@ -39,6 +41,7 @@ html, body, input, button {
 
 #TheShire {
 	width: 100%;
+	background: #C9C9A4;
 }
 
 #TheShire > .members-container{
@@ -49,52 +52,71 @@ html, body, input, button {
 
 
 #Dacorlad {
+	color: white;
 	width: 50%;
+	background: #473F4E;
 }
 
 #Gondor {
 	width: 50%;
+	background: #AAB673;
 }
 
 #Wirkwood {
 	width: 33.33333%;
+	background: #969C6C;
 }
 #Fangorn {
 	width: 33.33333%;
+	background: #969C6C;
 }
 #Rohan {
 	width: 33.33333%;
+	background: #DBCB78;
 }
 
 /*Mountains*/
 #TheHighPass {
 	width: 25%;
+	color: white;
+	background: #523A33;
 }
 
 #MistyMountains {
 	width: 25%;
+	color: white;
+	background: #523A33;
 }
 #Caradhras {
 	width: 25%;
+	color: white;
+	background: #523A33;
 }
 #GateofRohan {
 	width: 25%;
+	color: white;
+	background: #523A33;
 }
 
 #Rhudaur {
 	width: 33.33333%;
+	background: #969C6C;
 }
 #Eregion {
 	width: 33.33333%;
+	background: #DBCB78;
 }
 #Eneowaith {
 	width: 33.33333%;
+	background: #969C6C;
 }
 
 #Artheham {
 	width: 50%;
+	background: #AAB673;
 }
 
 #Cardolan {
 	width: 50%;
+	background: #AAB673;
 }
