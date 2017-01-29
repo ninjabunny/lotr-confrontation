@@ -20,3 +20,9 @@ export function firebaseSync(payload) {
     payload: payload
   }
 }
+
+export function toggleFaction() {
+  return {
+    type: 'TOGGLE_FACTION',
+  }
+}

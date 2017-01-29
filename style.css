@@ -3,11 +3,32 @@ html, body, input, button {
   font-size: 20px;
 }
 
+.notme {
+	display: none;
+}
+
+.selected {
+	position: absolute;
+	content:"";
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	opacity:0;
+	opacity: .7;
+	background: red;
+}
+
 .game-piece {
+	position: relative;
 	width: 320px;
 	height: 80px;
- background: white;
- border: 1px black solid;
+	border: 1px black solid;
+	background: slategrey;
+}
+
+.game-piece > .fellowship{
+	background: slategrey;
 }
 
 .lotr {

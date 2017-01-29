@@ -68,11 +68,15 @@ const init = {
     }
   ],
   selected: {location: '', member: ''},
+  faction: 'fellowship'
 };
 
 export default function reducer(state=init, action) {
   console.log('Dispatched Action: ', action);
   switch(action.type) {
+    case 'TOGGLE_FACTION':
+      state.faction = (state.faction === 'fellowship') ? 'sauron' : 'fellowship';
+      return Object.assign({}, state);
     case 'FIREBASE_SYNC':
       state.locations = action.payload;
       return Object.assign({}, state);
