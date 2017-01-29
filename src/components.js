@@ -7,14 +7,21 @@ export function gamePiece(member, dispatch) {
     dispatch(member);
   }
   let divStyle = {backgroundImage: 'url(assets/' + member + '.png)'};
-  return <div className='game-piece' id={member} key={member} onClickCapture={handleClick} style={divStyle}></div>;
+  // let src = {'assets/' + member + '.png)'};
+  return (
+    <img className='game-piece' id={member} key={member} onClickCapture={handleClick} src={'assets/' + member + '.png'} />
+    );
+  // return <div className='game-piece' id={member} key={member} onClickCapture={handleClick} style={divStyle}></div>;
 }
 
 export function locationAreas(location, dispatches) {
   let members;
   if(location.members) {
    members = location.members.map(member => {
-      return gamePiece(member, dispatches.selectGamePiece);
+      if (member !== '') {
+        return gamePiece(member, dispatches.selectGamePiece);  
+      }
+      
     });  
   }
   
@@ -23,9 +30,11 @@ export function locationAreas(location, dispatches) {
     e.stopPropagation();
     dispatches.selectedLocation(location.name);
   }
-  return (<div id={location.name} key={location.name} onClick={handleClick}>
-    {location.name}
-    {members}
+  let id = location.name.replace(/ /g,'');
+
+  return (<div id={id} className='location' key={location.name} onClick={handleClick}>
+    <span className='location-name'>{location.name}</span>
+    <div className='members-container'>{members}</div>
   </div>);
 }
 
@@ -36,7 +45,7 @@ export function Box(props) {
     return locationAreas(location, dispatches);
   });
   return (
-    <div className='todo'>
+    <div className='lotr'>
       {local}
     </div>
   );

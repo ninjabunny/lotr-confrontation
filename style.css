@@ -3,17 +3,98 @@ html, body, input, button {
   font-size: 20px;
 }
 
-#dogtown {
- background: red; 
-}
-
-#ludeville {
- background: green; 
-}
-
 .game-piece {
 	width: 320px;
 	height: 80px;
  background: white;
  border: 1px black solid;
+}
+
+.lotr {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.members-container {
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+}
+
+.location {
+	min-width: 320px;
+	min-height: 80px;
+	text-align: center;
+	box-sizing: border-box;
+	border: 1px black solid;
+}
+
+#Mordor {
+	width: 100%;
+}
+#Mordor > .members-container{
+	flex-direction: row;
+	justify-content: center;
+}
+
+#TheShire {
+	width: 100%;
+}
+
+#TheShire > .members-container{
+	flex-direction: row;
+	justify-content: center;
+}
+
+
+
+#Dacorlad {
+	width: 50%;
+}
+
+#Gondor {
+	width: 50%;
+}
+
+#Wirkwood {
+	width: 33.33333%;
+}
+#Fangorn {
+	width: 33.33333%;
+}
+#Rohan {
+	width: 33.33333%;
+}
+
+/*Mountains*/
+#TheHighPass {
+	width: 25%;
+}
+
+#MistyMountains {
+	width: 25%;
+}
+#Caradhras {
+	width: 25%;
+}
+#GateofRohan {
+	width: 25%;
+}
+
+#Rhudaur {
+	width: 33.33333%;
+}
+#Eregion {
+	width: 33.33333%;
+}
+#Eneowaith {
+	width: 33.33333%;
+}
+
+#Artheham {
+	width: 50%;
+}
+
+#Cardolan {
+	width: 50%;
 }
