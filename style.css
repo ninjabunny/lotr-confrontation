@@ -85,11 +85,11 @@ html, body, input, button {
 
 #Wirkwood {
 	width: 33.33333%;
-	background: #969C6C;
+	background-image: url("assets/right-arrow.jpg");
 }
 #Fangorn {
 	width: 33.33333%;
-	background: #969C6C;
+	background-image: url("assets/right-arrow.jpg");
 }
 #Rohan {
 	width: 33.33333%;
@@ -125,7 +125,7 @@ html, body, input, button {
 }
 #Eregion {
 	width: 33.33333%;
-	background: #DBCB78;
+	background-image: url("assets/moria.jpg");
 }
 #Eneowaith {
 	width: 33.33333%;
