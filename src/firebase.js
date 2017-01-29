@@ -1,5 +1,11 @@
 import * as firebase from 'firebase';
 
+var hash = window.location.hash;
+if (hash.toString().length > 0) {
+	hash = hash.toString().slice(1);
+}
+console.log(hash)
+
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyD9IGRHaeJ6LcvgUAn3xPTsChxCkP4J9ds",
@@ -9,4 +15,4 @@ var config = {
   messagingSenderId: "307523636073"
 };
 
-export const fb = firebase.initializeApp(config).database().ref();
+export const fb = firebase.initializeApp(config).database().ref(hash + '/');

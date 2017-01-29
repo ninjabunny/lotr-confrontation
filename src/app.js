@@ -8,8 +8,6 @@ import { combineReducers } from 'redux';
 import { firebaseSync } from './actions';
 import { fb } from './firebase';
 
-
-
 const store = createStore(reducer);
 
 console.log(store.getState());

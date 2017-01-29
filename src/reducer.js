@@ -84,6 +84,10 @@ export default function reducer(state=init, action) {
         }
       });
       state.selected.member = '';
+
+      //update firebase
+      fb.set(state.locations);
+      
       return Object.assign({}, state);
     case 'TOGGLE_FACTION':
       state.faction = (state.faction === 'fellowship') ? 'sauron' : 'fellowship';
@@ -114,7 +118,6 @@ export default function reducer(state=init, action) {
           }
           state.selected.member = '';  
         }
-        
 
         //update firebase
         fb.set(state.locations);
