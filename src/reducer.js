@@ -93,9 +93,14 @@ export default function reducer(state=init, action) {
       if ( state.selected.member !== '') {
         //add member
         if (state.selected.member) {
-          state.locations.filter(location => {
+          let match = state.locations.filter(location => {
             return location.name === action.location;
-          })[0].members.push(state.selected.member);
+          });
+          if (match[0].members){
+            match[0].members.push(state.selected.member)
+          } else {
+            match[0].members = [state.selected.member];
+          }
           state.selected.member = '';  
         }
         
