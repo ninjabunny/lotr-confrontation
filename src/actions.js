@@ -26,3 +26,9 @@ export function toggleFaction() {
     type: 'TOGGLE_FACTION',
   }
 }
+
+export function deleteSelected() {
+  return {
+    type: 'DELETE_SELECTED',
+  }
+}

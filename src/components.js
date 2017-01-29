@@ -60,6 +60,10 @@ export function Box(props) {
     e.stopPropagation();
     dispatches.toggleFaction();
   }
+  function deleteSelected(e) {
+    e.stopPropagation();
+    dispatches.deleteSelected();
+  }
 
   let local = locations.map(location => {
     return locationAreas(location, props);
@@ -68,6 +72,7 @@ export function Box(props) {
     <div >
       <div className='lotr'>{local}</div>
       <button key='2' onClickCapture={handleClick}>Toggle Faction</button>
+      <button key='3' onClickCapture={deleteSelected}>Delete Selected</button>
     </div>
   );
 }

@@ -74,6 +74,17 @@ const init = {
 export default function reducer(state=init, action) {
   console.log('Dispatched Action: ', action);
   switch(action.type) {
+    case 'DELETE_SELECTED':
+      state.locations.map(location => {
+        if(location.members) {
+          let index = location.members.indexOf(state.selected.member);
+          if (index !== -1) {
+            location.members.splice(index, 1);  
+          }  
+        }
+      });
+      state.selected.member = '';
+      return Object.assign({}, state);
     case 'TOGGLE_FACTION':
       state.faction = (state.faction === 'fellowship') ? 'sauron' : 'fellowship';
       return Object.assign({}, state);
