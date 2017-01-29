@@ -7,7 +7,7 @@ const init = {
       members: ['balrog', 'blackrider', 'cavetroll', 'nazgul']
     },
     {
-      name: 'Dacorlad',
+      name: 'Dagorlad',
       members: ['orcs']
     },
     {
@@ -15,7 +15,7 @@ const init = {
       members: ['saruman']
     },
     {
-      name: 'Wirkwood',
+      name: 'Mirkwood',
       members: ['shelob']
     },
     {
@@ -51,11 +51,11 @@ const init = {
       members: ['pippin']
     },
     {
-      name: 'Eneowaith',
+      name: 'Enedwaith',
       members: ['merry']
     },
     {
-      name: 'Artheham',
+      name: 'Arthedain',
       members: ['legolas']
     },
     {
@@ -70,6 +70,25 @@ const init = {
   selected: {location: '', member: ''},
   faction: 'fellowship'
 };
+
+export function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
 
 export default function reducer(state=init, action) {
   console.log('Dispatched Action: ', action);
@@ -87,7 +106,7 @@ export default function reducer(state=init, action) {
 
       //update firebase
       fb.set(state.locations);
-      
+
       return Object.assign({}, state);
     case 'TOGGLE_FACTION':
       state.faction = (state.faction === 'fellowship') ? 'sauron' : 'fellowship';
@@ -121,6 +140,16 @@ export default function reducer(state=init, action) {
 
         //update firebase
         fb.set(state.locations);
+      } else {
+        let match = state.locations.filter(location => {
+          return location.name === action.location;
+        });
+        if (match[0].members.length > 1) {
+          console.log('match', match[0].members)  
+          match[0].members = shuffle(match[0].members);
+          console.log('shuffled', match[0].members)  
+        }
+        
       }
       return Object.assign({}, state)
     case 'SELECT_GAME_PIECE':

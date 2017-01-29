@@ -72,7 +72,7 @@ html, body, input, button {
 
 
 
-#Dacorlad {
+#Dagorlad {
 	color: white;
 	width: 50%;
 	background: #473F4E;
@@ -83,7 +83,7 @@ html, body, input, button {
 	background: #AAB673;
 }
 
-#Wirkwood {
+#Mirkwood {
 	width: 33.33333%;
 	background-image: url("assets/right-arrow.jpg");
 }
@@ -127,12 +127,12 @@ html, body, input, button {
 	width: 33.33333%;
 	background-image: url("assets/moria.jpg");
 }
-#Eneowaith {
+#Enedwaith {
 	width: 33.33333%;
 	background: #969C6C;
 }
 
-#Artheham {
+#Arthedain {
 	width: 50%;
 	background: #AAB673;
 }
