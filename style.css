@@ -34,6 +34,7 @@ html, body, input, button {
 .lotr {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .members-container {
@@ -74,25 +75,25 @@ html, body, input, button {
 
 #Dagorlad {
 	color: white;
-	width: 50%;
+	width: 34%;
 	background: #473F4E;
 }
 
 #Gondor {
-	width: 50%;
+	width: 34%;
 	background: #AAB673;
 }
 
 #Mirkwood {
-	width: 33.33333%;
+	width: 32.1%;
 	background-image: url("assets/right-arrow.jpg");
 }
 #Fangorn {
-	width: 33.33333%;
+	width: 32.1%;
 	background-image: url("assets/right-arrow.jpg");
 }
 #Rohan {
-	width: 33.33333%;
+	width: 32.1%;
 	background: #DBCB78;
 }
 
@@ -120,24 +121,24 @@ html, body, input, button {
 }
 
 #Rhudaur {
-	width: 33.33333%;
+	width: 32.1%;
 	background: #969C6C;
 }
 #Eregion {
-	width: 33.33333%;
+	width: 32.1%;
 	background-image: url("assets/moria.jpg");
 }
 #Enedwaith {
-	width: 33.33333%;
+	width: 32.1%;
 	background: #969C6C;
 }
 
 #Arthedain {
-	width: 50%;
+	width: 34%;
 	background: #AAB673;
 }
 
 #Cardolan {
-	width: 50%;
+	width: 34%;
 	background: #AAB673;
 }
