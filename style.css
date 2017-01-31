@@ -142,3 +142,12 @@ html, body, input, button {
 	width: 34%;
 	background: #AAB673;
 }
+
+#notDead {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#deadTitle {
+	width: 100%;
+}

@@ -26,6 +26,14 @@ export function gamePiece(member, props) {
     );
 }
 
+export function notDeadPiece(member) {
+  let divStyle = {backgroundImage: 'url(assets/' + member + '.png)'};
+  return (<div className='dead-piece'>
+    <img key={member} src={'assets/' + member + '.png'} />
+    </div>
+    );
+}
+
 export function locationAreas(location, props) {
   const { locations, faction } = props.box;
   const { dispatches } = props;
@@ -53,9 +61,16 @@ export function locationAreas(location, props) {
 }
 
 export function Box(props) {
-  const { locations } = props.box;
+  const { locations, faction } = props.box;
   const { dispatches } = props;
 
+  let notDeadList = locations.map(location => {
+    return location.members.filter(member => {
+      return getFaction(member) !== faction && member !== "";
+    });
+  }).reduce((a, b) => {
+    return a.concat(b);
+  }, []).sort();
   function handleClick(e) {
     e.stopPropagation();
     dispatches.toggleFaction();
@@ -68,11 +83,17 @@ export function Box(props) {
   let local = locations.map(location => {
     return locationAreas(location, props);
   });
+
+  let notDead = notDeadList.map(member => {
+    return notDeadPiece(member);
+  });
+
   return (
     <div >
       <div className='lotr'>{local}</div>
       <button key='2' onClickCapture={handleClick}>Toggle Faction</button>
       <button key='3' onClickCapture={deleteSelected}>Delete Selected</button>
+      <div id='notDead' key='notDead'><span id='deadTitle'>Who is left?</span>{notDead}</div>
     </div>
   );
 }
