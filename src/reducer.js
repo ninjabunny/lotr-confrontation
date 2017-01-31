@@ -1,5 +1,12 @@
 import { fb } from './firebase';
 
+
+const time = () => {
+  const date = new Date();
+  // const secs = date.getSeconds().toString();
+  
+  return date.getHours() + ':' + date.getMinutes() + ':' + (date.getSeconds().toString().length > 1 ? date.getSeconds() : '0' + date.getSeconds()) + ' ';  
+}
 const init = {
   locations: [
     {
@@ -68,7 +75,8 @@ const init = {
     }
   ],
   selected: {location: '', member: ''},
-  faction: 'fellowship'
+  faction: 'fellowship',
+  msgs: []
 };
 
 export function shuffle(array) {
@@ -94,6 +102,7 @@ export default function reducer(state=init, action) {
   console.log('Dispatched Action: ', action);
   switch(action.type) {
     case 'DELETE_SELECTED':
+      let msg = state.faction + ': ' + state.selected.member + ' has been defeated.';
       state.locations.map(location => {
         if(location.members) {
           let index = location.members.indexOf(state.selected.member);
@@ -104,22 +113,32 @@ export default function reducer(state=init, action) {
       });
       state.selected.member = '';
 
-      //update firebase
-      fb.set(state.locations);
+      //update messages
+      state.msgs.unshift({
+        faction: state.faction,
+        text:time() + msg
+      });
 
+      //update firebase
+      fb.set({
+        locations: state.locations,
+        msgs: state.msgs
+      });
       return Object.assign({}, state);
     case 'TOGGLE_FACTION':
       state.faction = (state.faction === 'fellowship') ? 'sauron' : 'fellowship';
       return Object.assign({}, state);
     case 'FIREBASE_SYNC':
-      state.locations = action.payload;
+      state.locations = action.payload.locations;
       return Object.assign({}, state);
     case 'SELECT_LOCATION':
+      let from, to;
       //remove the previous member
       state.locations.map(location => {
         if(location.members) {
           let index = location.members.indexOf(state.selected.member);
           if (index !== -1) {
+            from = location.name;
             location.members.splice(index, 1);  
           }  
         }
@@ -130,6 +149,8 @@ export default function reducer(state=init, action) {
           let match = state.locations.filter(location => {
             return location.name === action.location;
           });
+          to = match[0].name;
+
           if (match[0].members){
             match[0].members.push(state.selected.member)
           } else {
@@ -138,16 +159,27 @@ export default function reducer(state=init, action) {
           state.selected.member = '';  
         }
 
+        let msg = state.faction + ' has moved from ' + from + ' to ' + to + '.'
+        if (from === 'Eregion' && to === 'Fangorn') {
+          msg = state.faction + ' has used Moria to get from Eregion to Fangorn. Check to see if Balrog is in Caradhras. If so, destroy fellowship character.';
+        }
+        //update messages
+        state.msgs.unshift({
+          faction: state.faction,
+          text:time() + msg
+        });
+
         //update firebase
-        fb.set(state.locations);
+        fb.set({
+          locations: state.locations,
+          msgs: state.msgs
+        });
       } else {
         let match = state.locations.filter(location => {
           return location.name === action.location;
         });
         if (match[0].members.length > 1) {
-          console.log('match', match[0].members)  
           match[0].members = shuffle(match[0].members);
-          console.log('shuffled', match[0].members)  
         }
         
       }

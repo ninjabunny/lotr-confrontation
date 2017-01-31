@@ -61,7 +61,7 @@ export function locationAreas(location, props) {
 }
 
 export function Box(props) {
-  const { locations, faction } = props.box;
+  const { locations, faction, msgs} = props.box;
   const { dispatches } = props;
 
   let notDeadList = locations.map(location => {
@@ -87,12 +87,17 @@ export function Box(props) {
   let notDead = notDeadList.map(member => {
     return notDeadPiece(member);
   });
+  console.log(msgs)
+  let messages = msgs.map(msg => {
+    return (<span className={msg.faction}>{msg.text}</span>)
+  });
 
   return (
     <div >
       <div className='lotr'>{local}</div>
       <button key='2' onClickCapture={handleClick}>Toggle Faction</button>
       <button key='3' onClickCapture={deleteSelected}>Delete Selected</button>
+      <div id='msgs'>{messages}</div>
       <div id='notDead' key='notDead'><span id='deadTitle'>Who is left?</span>{notDead}</div>
     </div>
   );

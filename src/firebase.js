@@ -4,7 +4,6 @@ var hash = window.location.hash;
 if (hash.toString().length > 0) {
 	hash = hash.toString().slice(1);
 }
-console.log(hash)
 
 // Initialize Firebase
 var config = {
@@ -16,3 +15,4 @@ var config = {
 };
 
 export const fb = firebase.initializeApp(config).database().ref(hash + '/');
+	

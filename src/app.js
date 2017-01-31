@@ -10,9 +10,10 @@ import { fb } from './firebase';
 
 const store = createStore(reducer);
 
-console.log(store.getState());
-
-fb.set(store.getState().locations);
+fb.set({
+	locations: store.getState().locations,
+	msgs: []
+});
 
 fb.on('value', snapshot => {
 	store.dispatch(firebaseSync(snapshot.val()));	
