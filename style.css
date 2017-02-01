@@ -155,7 +155,7 @@ html, body, input, button {
 #msgs {
 	overflow-y: hidden;
 	width: 100%;
-	height: 5em;
+	height: 6em;
 	display: flex;
 	flex-direction: column;
 }

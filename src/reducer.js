@@ -113,6 +113,10 @@ export default function reducer(state=init, action) {
       });
       state.selected.member = '';
 
+      if (!state.msgs) {
+        state.msgs = [];
+      }
+
       //update messages
       state.msgs.unshift({
         faction: state.faction,
@@ -130,6 +134,7 @@ export default function reducer(state=init, action) {
       return Object.assign({}, state);
     case 'FIREBASE_SYNC':
       state.locations = action.payload.locations;
+      state.msgs = action.payload.msgs;
       return Object.assign({}, state);
     case 'SELECT_LOCATION':
       let from, to;
@@ -162,6 +167,9 @@ export default function reducer(state=init, action) {
         let msg = state.faction + ' has moved from ' + from + ' to ' + to + '.'
         if (from === 'Eregion' && to === 'Fangorn') {
           msg = state.faction + ' has used Moria to get from Eregion to Fangorn. Check to see if Balrog is in Caradhras. If so, destroy fellowship character.';
+        }
+        if (!state.msgs) {
+          state.msgs = [];
         }
         //update messages
         state.msgs.unshift({
