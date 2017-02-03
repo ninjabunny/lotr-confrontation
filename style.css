@@ -63,7 +63,9 @@ html, body, input, button {
 
 #TheShire {
 	width: 100%;
-	background: #C9C9A4;
+	color: white;
+	font-weight: bold;
+	background-image: url("assets/shire.jpg");
 }
 
 #TheShire > .members-container{
@@ -81,17 +83,38 @@ html, body, input, button {
 
 #Gondor {
 	width: 34%;
-	background: #AAB673;
+	background-image: url("assets/grass2.jpg");
 }
 
 #Mirkwood {
+	position: relative;
 	width: 32.1%;
-	background-image: url("assets/right-arrow.jpg");
+	background: #969C6C;
+}
+
+#Mirkwood:after {
+	position: absolute;
+	content: '\2192';
+	color: yellow;
+	top: 33%;
+	font-size: 40px;
+	right: -0.5em;
+	z-index: 999;
 }
 #Fangorn {
+	position: relative;
 	width: 32.1%;
-	background-image: url("assets/right-arrow.jpg");
+	background: #969C6C;
 }
+#Fangorn:after {
+	position: absolute;
+	content: '\2192';
+	color: yellow;
+	top: 33%;
+	font-size: 40px;
+	right: -0.5em;
+}
+
 #Rohan {
 	width: 32.1%;
 	background: #DBCB78;
@@ -124,10 +147,25 @@ html, body, input, button {
 	width: 32.1%;
 	background: #969C6C;
 }
+
 #Eregion {
+	position: relative;
 	width: 32.1%;
-	background-image: url("assets/moria.jpg");
+	background: #DBCB78;
 }
+#Eregion:after {
+	width: 0;
+	height: 0;
+	position: absolute;
+	content: '\2191 \A M \A O \A R \A I \A A';
+	white-space: pre;
+	color: yellow;
+	left: 60%;
+	top: -150px;
+	font-size: 30px;
+	right: -0.5em;
+}
+
 #Enedwaith {
 	width: 32.1%;
 	background: #969C6C;
@@ -135,12 +173,12 @@ html, body, input, button {
 
 #Arthedain {
 	width: 34%;
-	background: #AAB673;
+	background-image: url("assets/grass2.jpg");
 }
 
 #Cardolan {
 	width: 34%;
-	background: #AAB673;
+	background-image: url("assets/grass2.jpg");
 }
 
 #notDead {
