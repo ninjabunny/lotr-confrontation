@@ -63,9 +63,7 @@ html, body, input, button {
 
 #TheShire {
 	width: 100%;
-	color: white;
-	font-weight: bold;
-	background-image: url("assets/shire.jpg");
+	background: #C9C9A4;
 }
 
 #TheShire > .members-container{
@@ -83,7 +81,7 @@ html, body, input, button {
 
 #Gondor {
 	width: 34%;
-	background-image: url("assets/grass2.jpg");
+	background: #AAB673;
 }
 
 #Mirkwood {
@@ -173,12 +171,12 @@ html, body, input, button {
 
 #Arthedain {
 	width: 34%;
-	background-image: url("assets/grass2.jpg");
+	background: #AAB673;
 }
 
 #Cardolan {
 	width: 34%;
-	background-image: url("assets/grass2.jpg");
+	background: #AAB673;
 }
 
 #notDead {
