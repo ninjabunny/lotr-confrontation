@@ -32,9 +32,8 @@ export function locationAreas(location, props) {
   if(location.members) {
    members = location.members.map(member => {
       if (member !== '') {
-        return gamePiece(member, props);  
+        return gamePiece(member, props);
       }
-      
     });  
   }
   
@@ -55,15 +54,22 @@ function info() {
   return (<div>
     <h3>Cards:</h3>
     <span>Fellowship Cards: 1-5 strength modifiers, Magic, Nobel Sacrifice, Elven Cloak (ignore sauron strength card), Retreat (backwards).</span><br/>
-    <span>Sauron Cards: 1-6 strength modifiers, Magic, Eye of Sauron (fellowship card text is ignored), Retreat (sideways)</span>
+    <span><input type='checkbox'></input>SHADOWFAX (CLASSIC GAME): Use this card on your turn before moving. Move a fellowship character forward to and adjancent region, then move that character as nomral</span><br/>
+    <span><input type='checkbox'></input>GANDALF THE WHITE (CLASSIC GAME): Use this card instead of taking your turn. If Gandalf is defeated, return him to the game and place him in Fangorn.</span><br/>
+    <span><input type='checkbox'></input>A KING REVEALED: Use this card instead of taking your turn. Reveal Aragon to choose a Sauron character. The Saurn player must move that character during his next turn.</span><br/>
+    <span><input type='checkbox'></input>GWAIHIR THE WINDLORD: Use this card after characters have been revealed for battle. The fellowship character may immediatly retreat sideways or backwards.</span><br/>
+    <span>Sauron Cards: 1-6 strength modifiers, Magic, Eye of Sauron (fellowship card text is ignored), Retreat (sideways)</span><br />
+    <span><input type='checkbox'></input>PALANTIR (CLASSIC GAME): Use this card during your turn. Reveal all fellowship characters in one region except the Shire.</span><br/>
+    <span><input type='checkbox'></input>RECALL TO MORDOR (CLASSIC GAME): Use this card instead of taking your turn. Take one of your charaters and place it in Mordor</span><br/>
+    <span><input type='checkbox'></input></span>THE DARK OF MORDOR: Use this card during your turn before moving. Move a Sauron character into an empty adjacen region. Then, move another character as normal.<br/>
+    <span><input type='checkbox'></input>CREBAIN OF DUNLAND: Use this card instead of taking your turn. Choose and perminently reveal a fellowship character for the remainer of the game.</span><br/>
     </div>
     );
 }
 
 export function Box(props) {
-  const { locations, faction, msgs} = props.box;
+  const { locations, faction, msgs, selected} = props.box;
   const { dispatches } = props;
-
   let notDeadList = locations.map(location => {
     if (location.members) {
       return location.members.filter(member => {
@@ -77,13 +83,27 @@ export function Box(props) {
     return a.concat(b);
   }, []).sort();
 
-  function handleClick(e) {
+  function gandalfTheWhite(e) {
     e.stopPropagation();
+    dispatches.selectGamePiece('gandalf');
+    dispatches.selectedLocation('Fangorn');
+  }
+
+  function handleClick(e) {
+    
     dispatches.toggleFaction();
   }
   function deleteSelected(e) {
     e.stopPropagation();
-    dispatches.deleteSelected();
+    if(selected.member) {
+      if (confirm("Delete cannot be undone, are you sure you want to delete: " + selected.member)) {
+        dispatches.deleteSelected();
+      }
+    } else {
+      alert('You must first select a ' + faction + ' character to delete.')
+    }
+    
+    
   }
   let local = locations.map(location => {
     return locationAreas(location, props);
@@ -104,13 +124,14 @@ export function Box(props) {
   return (
     <div >
       <div className='lotr'>{local}</div>
-      <button key='2' onClickCapture={handleClick}>Toggle Faction</button>
       <button key='3' onClickCapture={deleteSelected}>Delete Selected</button>
+      <button key='4' onClickCapture={gandalfTheWhite}>Play GANDALF THE WHITE</button>
       <div id='msgs'>{messages}</div>
       <div id='notDead' key='notDead'><h3 id='deadTitle'>Who is left?</h3>{notDead}</div>
       {info()}
       <h3>More Info:</h3>
-      <a href='assets/confdeluxerules.pdf' target="_blank">PDF Rules</a>
+      <a href='assets/confdeluxerules.pdf' target="_blank">PDF Rules</a><br /><br />
+      <button key='2' onClickCapture={handleClick}>Toggle Faction</button>
     </div>
   );
 }

@@ -51,6 +51,9 @@ html, body, input, button {
 	border: 1px black solid;
 }
 
+#Mordor .game-piece {
+	margin: 0 5px;
+}
 #Mordor {
 	width: 100%;
 	background: #473F4E;
@@ -61,6 +64,9 @@ html, body, input, button {
 	justify-content: center;
 }
 
+#TheShire .game-piece {
+	margin: 0 5px;
+}
 #TheShire {
 	width: 100%;
 	background: #C9C9A4;
@@ -182,6 +188,9 @@ html, body, input, button {
 #notDead {
 	display: flex;
 	flex-wrap: wrap;
+}
+#notDead .dead-piece{
+	margin: 0 5px;
 }
 
 #deadTitle {
