@@ -213,3 +213,7 @@ html, body, input, button {
 	background: #473F4E;
 	color: white;
 }
+
+.location.movedTo {
+	border: black 5px solid;
+}

@@ -3,8 +3,6 @@ import { fb } from './firebase';
 
 const time = () => {
   const date = new Date();
-  // const secs = date.getSeconds().toString();
-  
   return date.getHours() + ':' + date.getMinutes() + ':' + (date.getSeconds().toString().length > 1 ? date.getSeconds() : '0' + date.getSeconds()) + ' ';  
 }
 const init = {
@@ -76,7 +74,8 @@ const init = {
   ],
   selected: {location: '', member: ''},
   faction: 'fellowship',
-  msgs: []
+  msgs: [],
+  movedTo: ''
 };
 
 export function shuffle(array) {
@@ -100,6 +99,14 @@ export function shuffle(array) {
 
 export default function reducer(state=init, action) {
   console.log('Dispatched Action: ', action);
+  if (!state.msgs) {
+    state.msgs = [];
+  }
+
+  if (!state.movedTo) {
+    state.movedTo = '';
+  }
+
   switch(action.type) {
     case 'DELETE_SELECTED':
       let msg = state.faction + ': ' + state.selected.member + ' has been defeated.';
@@ -113,10 +120,6 @@ export default function reducer(state=init, action) {
       });
       state.selected.member = '';
 
-      if (!state.msgs) {
-        state.msgs = [];
-      }
-
       //update messages
       state.msgs.unshift({
         faction: state.faction,
@@ -126,7 +129,8 @@ export default function reducer(state=init, action) {
       //update firebase
       fb.set({
         locations: state.locations,
-        msgs: state.msgs
+        msgs: state.msgs,
+        movedTo: state.movedTo
       });
       return Object.assign({}, state);
     case 'TOGGLE_FACTION':
@@ -135,6 +139,7 @@ export default function reducer(state=init, action) {
     case 'FIREBASE_SYNC':
       state.locations = action.payload.locations;
       state.msgs = action.payload.msgs;
+      state.movedTo = action.payload.movedTo;
       return Object.assign({}, state);
     case 'SELECT_LOCATION':
       let from, to;
@@ -168,19 +173,21 @@ export default function reducer(state=init, action) {
         if (from === 'Eregion' && to === 'Fangorn') {
           msg = state.faction + ' has used Moria to get from Eregion to Fangorn. Check to see if Balrog is in Caradhras. If so, destroy fellowship character.';
         }
-        if (!state.msgs) {
-          state.msgs = [];
-        }
+
         //update messages
         state.msgs.unshift({
           faction: state.faction,
-          text:time() + msg
+          text: time() + msg
         });
+
+        //update movedTo
+        state.movedTo = to;
 
         //update firebase
         fb.set({
           locations: state.locations,
-          msgs: state.msgs
+          msgs: state.msgs,
+          movedTo: state.movedTo
         });
       } else {
         let match = state.locations.filter(location => {

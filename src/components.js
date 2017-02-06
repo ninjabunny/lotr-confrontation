@@ -44,32 +44,23 @@ export function locationAreas(location, props) {
   }
   let id = location.name.replace(/ /g,'');
 
-  return (<div id={id} className='location' key={location.name} onClick={handleClick}>
+  let addClass = 'location';
+  if (location.name === props.box.movedTo) {
+    addClass += ' movedTo'
+  }
+
+  return (<div id={id} className={addClass} key={location.name} onClick={handleClick}>
     <span className='location-name'>{location.name}</span>
     <div className='members-container'>{members}</div>
   </div>);
 }
 
-function info() {
-  return (<div>
-    <h3>Cards:</h3>
-    <span>Fellowship Cards: 1-5 strength modifiers, Magic, Nobel Sacrifice, Elven Cloak (ignore sauron strength card), Retreat (backwards).</span><br/>
-    <span><input type='checkbox'></input>SHADOWFAX (CLASSIC GAME): Use this card on your turn before moving. Move a fellowship character forward to and adjancent region, then move that character as nomral</span><br/>
-    <span><input type='checkbox'></input>GANDALF THE WHITE (CLASSIC GAME): Use this card instead of taking your turn. If Gandalf is defeated, return him to the game and place him in Fangorn.</span><br/>
-    <span><input type='checkbox'></input>A KING REVEALED: Use this card instead of taking your turn. Reveal Aragon to choose a Sauron character. The Saurn player must move that character during his next turn.</span><br/>
-    <span><input type='checkbox'></input>GWAIHIR THE WINDLORD: Use this card after characters have been revealed for battle. The fellowship character may immediatly retreat sideways or backwards.</span><br/>
-    <span>Sauron Cards: 1-6 strength modifiers, Magic, Eye of Sauron (fellowship card text is ignored), Retreat (sideways)</span><br />
-    <span><input type='checkbox'></input>PALANTIR (CLASSIC GAME): Use this card during your turn. Reveal all fellowship characters in one region except the Shire.</span><br/>
-    <span><input type='checkbox'></input>RECALL TO MORDOR (CLASSIC GAME): Use this card instead of taking your turn. Take one of your charaters and place it in Mordor</span><br/>
-    <span><input type='checkbox'></input></span>THE DARK OF MORDOR: Use this card during your turn before moving. Move a Sauron character into an empty adjacen region. Then, move another character as normal.<br/>
-    <span><input type='checkbox'></input>CREBAIN OF DUNLAND: Use this card instead of taking your turn. Choose and perminently reveal a fellowship character for the remainer of the game.</span><br/>
-    </div>
-    );
-}
+
 
 export function Box(props) {
   const { locations, faction, msgs, selected} = props.box;
   const { dispatches } = props;
+
   let notDeadList = locations.map(location => {
     if (location.members) {
       return location.members.filter(member => {
@@ -227,4 +218,21 @@ const characters = {
     title: "CAVE TROLL (9): When it comes to playing cards in a battle with the Cave Troll, the Sauron player's card is ignored. The Sauron player must still play and discard a card, even though that card has no effect in the battle.",
     faction: 'sauron'
   }
+}
+
+function info() {
+  return (<div>
+    <h3>Cards:</h3>
+    <span>Fellowship Cards: 1-5 strength modifiers, Magic, Nobel Sacrifice, Elven Cloak (ignore sauron strength card), Retreat (backwards).</span><br/>
+    <span><input type='checkbox'></input>SHADOWFAX (CLASSIC GAME): Use this card on your turn before moving. Move a fellowship character forward to and adjancent region, then move that character as nomral</span><br/>
+    <span><input type='checkbox'></input>GANDALF THE WHITE (CLASSIC GAME): Use this card instead of taking your turn. If Gandalf is defeated, return him to the game and place him in Fangorn.</span><br/>
+    <span><input type='checkbox'></input>A KING REVEALED: Use this card instead of taking your turn. Reveal Aragon to choose a Sauron character. The Saurn player must move that character during his next turn.</span><br/>
+    <span><input type='checkbox'></input>GWAIHIR THE WINDLORD: Use this card after characters have been revealed for battle. The fellowship character may immediatly retreat sideways or backwards.</span><br/>
+    <span>Sauron Cards: 1-6 strength modifiers, Magic, Eye of Sauron (fellowship card text is ignored), Retreat (sideways)</span><br />
+    <span><input type='checkbox'></input>PALANTIR (CLASSIC GAME): Use this card during your turn. Reveal all fellowship characters in one region except the Shire.</span><br/>
+    <span><input type='checkbox'></input>RECALL TO MORDOR (CLASSIC GAME): Use this card instead of taking your turn. Take one of your charaters and place it in Mordor</span><br/>
+    <span><input type='checkbox'></input></span>THE DARK OF MORDOR: Use this card during your turn before moving. Move a Sauron character into an empty adjacen region. Then, move another character as normal.<br/>
+    <span><input type='checkbox'></input>CREBAIN OF DUNLAND: Use this card instead of taking your turn. Choose and perminently reveal a fellowship character for the remainer of the game.</span><br/>
+    </div>
+    );
 }

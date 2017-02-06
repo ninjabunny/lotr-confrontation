@@ -12,7 +12,8 @@ const store = createStore(reducer);
 
 fb.set({
 	locations: store.getState().locations,
-	msgs: []
+	msgs: [],
+	movedTo: ''
 });
 
 fb.on('value', snapshot => {
